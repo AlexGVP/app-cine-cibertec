@@ -26,7 +26,6 @@ $(document).on("click", "#btnguardar", function(){
             alert(resultado.mensaje);
             $("#modalestado").modal("hide")
         }
-
     })
 });
 
