@@ -14,42 +14,42 @@ public class EstadoService {
 
     private EstadoRepository estadoRepository;
 
-    public List<Estado> listaEstado(){
+    public List<Estado> listaEstado() {
         return estadoRepository.findAll();
     }
 
-    public ResultadoResponse registrarEstado(Estado estado){
+    public ResultadoResponse registrarEstado(Estado estado) {
         Estado nuevoEstado = new Estado();
-        if(estado.getIdestado()>0){
+        if (estado.getIdestado() > 0) {
             nuevoEstado.setIdestado(estado.getIdestado());
         }
         nuevoEstado.setDescestado(estado.getDescestado());
-        String mensaje ="Estado registrado";
+        String mensaje = "Estado registrado";
         Boolean respuesta = true;
-        try{
+        try {
             estadoRepository.save(nuevoEstado);
-        }catch (Exception ex){
-            mensaje ="Estado NO registrado";
-            respuesta=false;
+        } catch (Exception ex) {
+            mensaje = "Estado NO registrado";
+            respuesta = false;
         }
         return ResultadoResponse.builder().respuesta(respuesta)
                 .mensaje(mensaje).build();
     }
 
-    public ResultadoResponse eliminarEstado(Integer idestado){
+    public ResultadoResponse eliminarEstado(Integer idestado) {
         String mensaje = "Estado eliminado";
         boolean respuesta = true;
         try {
             estadoRepository.deleteById(idestado);
-        } catch (Exception ex){
-            mensaje="Estado NO eliminado";
-            respuesta=false;
+        } catch (Exception ex) {
+            mensaje = "Estado NO eliminado";
+            respuesta = false;
         }
         return ResultadoResponse.builder().respuesta(respuesta)
                 .mensaje(mensaje).build();
     }
 
-    public List<Estado> listarEstado() {
-        return null;
+    public List<Estado> listarEstados() {
+        return estadoRepository.findAll();
     }
 }
